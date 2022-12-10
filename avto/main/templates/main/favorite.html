@@ -1,32 +1,14 @@
+{% extends 'main/layout.html' %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="favoritestyle.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Избранное</title>
+     {% block css %} <link rel="stylesheet" href="favoritestyle.css"> {% endblock %}
+    {% block title %}Избранное{% endblock %}
 </head>
 
 <body>
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="settings.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-              <strong>ФИО</strong>
-            </a>
-
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="adplace.html" class="nav-link active" aria-current="page">Разместить объявление</a></li>
-                <li class="nav-item"><a href="home.html" class="nav-link">Объявления</a></li>
-                <li class="nav-item"><a href="favorite.html" class="nav-link">Избранное</a></li>
-                <li class="nav-item"><a href="profile.html" class="nav-link">Мои объявления</a></li>
-            </ul>
-        </header>
-    </div>
-
+    {% block content %}
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
@@ -35,59 +17,44 @@
         </div>
       </section>
 
+
     <div class="album py-5">
         <div class="container">
-    
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Изображение</text></svg>
-    
-                <div class="card-body">
-                  <p class="card-text">Информация об авто</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-danger">Удалить</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for fel in fad %}
+    {% if user.pk == fel.profile.pk %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <a href="{% url 'ad' fel.ad.id %}"><div style="box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+                         <img class="bd-placeholder-img card-img-top" style="width: 100%; height: auto;"
+                            src="{{ fel.ad.image.url }}" role="img" aria-label="Placeholder: Thumbnail"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"></rect>
+                        </img>
+
+                        <div class="card-body">
+                            <p class="card-text" style="font-size: 24px;"><a href="{% url 'ad' fel.ad.id %}" style="color: black; text-decoration: none;">{{fel.ad.mark}} {{fel.ad.model}}</a></p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p style="font-size: 18px;">{{fel.ad.age}} год, {{fel.ad.mileage}} км.</p>
+                            </div>
+                            <span style="background-color: #198754; font-size: 18px; border-radius: 4px; color: #fff; padding-top: 8px; padding-bottom: 8px;">&nbsp {{fel.ad.price}} рублей &nbsp</span>
+                            <a href="{% url 'deletefav' fel.id %}">
+                                <button type="button" class="btn btn-danger">
+                                    Удалить из избранного
+                                </button>
+                            </a>
+                        </div>
+                        </div></a>
                 </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Изображение</text></svg>
-    
-                <div class="card-body">
-                  <p class="card-text">Информация об авто</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-danger">Удалить</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Изображение</text></svg>
-    
-                <div class="card-body">
-                  <p class="card-text">Информация об авто</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-danger">Удалить</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
+    {% endif %}
+    {% endfor %}
         </div>
-      </div>
+        </div>
+    </div>
+
+    {% endblock %}
 </body>
 
 </html>

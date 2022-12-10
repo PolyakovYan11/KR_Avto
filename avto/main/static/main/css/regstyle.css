@@ -25,8 +25,14 @@ body {
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin input[type="password1"] {
   margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.form-signin input[type="password2"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 }

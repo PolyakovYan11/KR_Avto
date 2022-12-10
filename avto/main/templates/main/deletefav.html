@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    {% block title %}Создание объявления{% endblock %}
+    {% block title %}Удаление объявления{% endblock %}
 </head>
 
 <body>
@@ -12,24 +12,15 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Создание объявления</h1>
+                <h1 class="fw-light">Уверены, что хотите удалить объявление из избранных?</h1>
             </div>
         </div>
 
-        <hr>
-
         <main>
         <div class="col-md-7 col-lg-8 m-auto">
-            <form class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
+            <form class="needs-validation" novalidate="" method="post">
                 {% csrf_token %}
-
-                {{form.as_p}}
-                <span>{{ error }}</span>
-                    <hr class="my-4">
-
-
-
-                    <button class="w-100 btn btn-success btn-lg" type="submit">Создать объявление</button>
+                <button class="w-100 btn btn-danger btn-lg" type="submit">Да, я хочу удалить объявление</button>
             </form>
         </div>
         </div>
