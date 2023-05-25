@@ -11,22 +11,6 @@
 {% block content %}
 
  {% csrf_token %}
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Фильтр по параметрам</h1>
-            </div>
-        </div>
-    </section>
-
-    <table>
-        <tr>
-            <th>
-
-            </th>
-        </tr>
-    </table>
-    <hr>
 
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
@@ -60,7 +44,9 @@
                             <span style="background-color: #198754; font-size: 18px; border-radius: 4px; color: #fff; padding-top: 8px; padding-bottom: 8px;">&nbsp {{el.price}} рублей &nbsp</span>
 
                             {% if request.user.is_authenticated %}
+                            {% if el.profile.pk != user.id %}
                             <a href="{% url 'addfavorite' user.pk el.pk %}"><button type="button" class="btn btn-outline-danger">В избранное</button></a>
+                            {% endif %}
                             {% endif %}
 
                         </div>

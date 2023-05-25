@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import include, path
 from . import views
 from .views import RegisterUser, LoginUser
+from django.contrib import admin
 
 urlpatterns = [
                   path('', views.home, name='home'),
@@ -19,6 +20,8 @@ urlpatterns = [
                   path('<int:pk>/update', views.AdUpdateView.as_view(), name='update'),
                   path('<int:pk>/delete', views.AdDeleteView.as_view(), name='delete'),
                   path('<int:pk>/deletefav', views.FavDeleteView.as_view(), name='deletefav'),
+                  path("chat/", include("chat.urls")),
+                  path("admin/", admin.site.urls),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

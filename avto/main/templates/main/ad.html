@@ -23,18 +23,12 @@
                     <li>
                         <h2>{{advert.mark}}&nbsp{{advert.model}}</h2>
                     </li>
-                    <li>
-                        {% if request.user.is_authenticated %}
-                        <a href="{% url 'addfavorite' user.pk advert.pk %}">
-                            <button type="button" class="btn btn-outline-danger"><h2 style="font-size: 20px;">В избранное</h2></button>
-                        </a>
-                        {% endif %}
-                    </li>
+
 
 
                     <div style="text-align: right; flex: auto; justify-content: flex-end;">
                         <span
-                            style="margin-left: 500px; margin-top: -100px; position: absolute; background-color: #198754; font-size: 30px; border-radius: 4px; color: #fff; padding-top: 8px; padding-bottom: 8px;">
+                            style="margin-left: 500px; margin-top: -70px; position: absolute; background-color: #198754; font-size: 30px; border-radius: 6px; color: #fff; padding-top: 8px; padding-bottom: 8px;">
                             &nbsp {{advert.price}} рублей &nbsp
                         </span>
 
@@ -51,6 +45,11 @@
                             </button>
                         </a>
                     </div>
+                    {% endif %}
+                    {% if user.pk != advert.profile.pk %}
+                        <a href="chat/{{advert.profile.id}}" style="margin-left: 510px; position: absolute;"><button type="button" class="btn btn-success">
+                        <h2 style="font-size: 20px;">Написать продавцу</h2>
+                        </button></a>
                     {% endif %}
                     {% endif %}
                     <br>
@@ -134,6 +133,7 @@
                 </tr>
             </table>
         </div>
+
     </div>
         </div>
     {% endblock %}
